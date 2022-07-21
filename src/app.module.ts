@@ -21,7 +21,7 @@ const graphQLModuleImport = GraphQLModule.forRoot<ApolloDriverConfig>({
   autoSchemaFile: join(process.cwd(), 'src/graphql/schema.gql'),
   sortSchema: true,
   resolvers: {
-    UploadScalar,
+    Upload: UploadScalar,
   },
 });
 

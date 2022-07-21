@@ -2,7 +2,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateTourInput } from './dto/create-tour.input';
 import { UpdateTourInput } from './dto/update-tour.input';
-import { TourDocument, Tour } from './tour.schema';
+import { TourDocument, Tour } from './entities/tour.schema';
 import Joi from 'joi';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 
@@ -42,9 +42,11 @@ export class ToursService {
 
   async create(createTourInput: CreateTourInput) {
     try {
-      const isValid = this.validateTour(createTourInput);
-      if (!isValid)
-        throw new HttpException('Invalid Tour', HttpStatus.FORBIDDEN);
+      console.log(createTourInput);
+
+      // const isValid = this.validateTour(createTourInput);
+      // if (!isValid)
+      //   throw new HttpException('Invalid Tour', HttpStatus.FORBIDDEN);
 
       const isTourNameValid = await this.tourModel.findOne({
         name: createTourInput.name,
@@ -56,7 +58,11 @@ export class ToursService {
           HttpStatus.FORBIDDEN,
         );
 
-      const newTour = new this.tourModel<Tour>(createTourInput);
+      const newTour = new this.tourModel<Tour>({
+        ...createTourInput,
+        image: JSON.stringify(createTourInput.image),
+        images: createTourInput.images.map((el) => JSON.stringify(el)),
+      });
       console.log(newTour);
 
       await newTour.save();

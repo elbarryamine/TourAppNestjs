@@ -6,9 +6,6 @@ export type FileUpload = {
 };
 
 function validate(fileupload: FileUpload) {
-  if (!('createWriteStream' in fileupload) || 'file' in fileupload) {
-    throw new Error('invalid uuid');
-  }
   return fileupload;
 }
 

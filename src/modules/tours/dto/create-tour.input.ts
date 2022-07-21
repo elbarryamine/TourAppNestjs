@@ -1,4 +1,6 @@
 import { InputType, Field, Float } from '@nestjs/graphql';
+import { UploadScalar } from 'src/modules/shared/graphql/UploadScalar';
+import type { FileUpload } from 'src/modules/shared/graphql/UploadScalar';
 
 @InputType()
 export class CreateTourInput {
@@ -29,9 +31,9 @@ export class CreateTourInput {
   @Field(() => [String])
   locations: string[];
 
-  @Field()
-  image: string;
+  @Field(() => UploadScalar)
+  image: FileUpload;
 
-  @Field(() => [String])
-  images: string[];
+  @Field(() => [UploadScalar])
+  images: FileUpload[];
 }

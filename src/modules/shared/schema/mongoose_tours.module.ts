@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { Tour } from 'src/modules/tours/entities/tour.entity';
-import { TourSchema } from 'src/modules/tours/tour.schema';
+import { TourSchema } from 'src/modules/tours/entities/tour.schema';
 import { MongooseModule } from '@nestjs/mongoose';
 
 const MongooseModuleInit = MongooseModule.forFeature([

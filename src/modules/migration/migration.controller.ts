@@ -1,8 +1,7 @@
 import { Controller, Post, Res } from '@nestjs/common';
 import { Response } from 'express';
 import * as faker from 'faker';
-import { Tour } from 'src/modules/tours/entities/tour.entity';
-import { TourDocument } from 'src/modules/tours/tour.schema';
+import { TourDocument, Tour } from 'src/modules/tours/entities/tour.schema';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 
