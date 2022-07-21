@@ -46,7 +46,7 @@ export class MigrationController {
           price: faker.datatype.number({ min: 0 }),
           discount: faker.datatype.number({ min: 0, max: 100 }),
           categories: selectedCategories,
-          duration: faker.datatype.datetime(),
+          duration: faker.datatype.number(),
           features: selectedFeatures,
           isActive: faker.datatype.boolean(),
           startLocation: faker.address.city(),

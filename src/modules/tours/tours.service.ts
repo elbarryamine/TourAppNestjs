@@ -2,8 +2,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateTourInput } from './dto/create-tour.input';
 import { UpdateTourInput } from './dto/update-tour.input';
-import { Tour } from './entities/tour.entity';
-import { TourDocument } from './tour.schema';
+import { TourDocument, Tour } from './tour.schema';
 import Joi from 'joi';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 
@@ -57,13 +56,7 @@ export class ToursService {
           HttpStatus.FORBIDDEN,
         );
 
-      const newTour = new this.tourModel<Omit<Tour, '_id'>>({
-        ...createTourInput,
-        image: '',
-        images: [''],
-        isActive: false,
-        rating: [],
-      });
+      const newTour = new this.tourModel<Tour>(createTourInput);
       console.log(newTour);
 
       await newTour.save();

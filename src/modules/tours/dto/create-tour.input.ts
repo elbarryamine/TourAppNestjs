@@ -1,4 +1,4 @@
-import { InputType, Field, GraphQLISODateTime } from '@nestjs/graphql';
+import { InputType, Field, Float } from '@nestjs/graphql';
 
 @InputType()
 export class CreateTourInput {
@@ -17,8 +17,8 @@ export class CreateTourInput {
   @Field(() => [String])
   categories: string[];
 
-  @Field(() => GraphQLISODateTime)
-  duration: Date;
+  @Field(() => Float)
+  duration: number;
 
   @Field(() => [String])
   features: string[];
@@ -29,9 +29,9 @@ export class CreateTourInput {
   @Field(() => [String])
   locations: string[];
 
-  // @Field()
-  // image: string;
+  @Field()
+  image: string;
 
-  // @Field(() => [String])
-  // images: string[];
+  @Field(() => [String])
+  images: string[];
 }

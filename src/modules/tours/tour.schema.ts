@@ -18,17 +18,11 @@ export class Tour {
   @Prop({ type: [String], required: true })
   categories: string[];
 
-  @Prop({ type: [Number], min: 0, max: 5, required: true, default: [] })
-  rating: number[];
-
   @Prop({ required: true })
-  duration: Date;
+  duration: number;
 
   @Prop({ type: [String], required: true })
   features: string[];
-
-  @Prop({ default: false, required: true })
-  isActive: boolean;
 
   @Prop({ required: true })
   startLocation: string;
@@ -42,14 +36,20 @@ export class Tour {
   @Prop({ type: [String], required: true })
   images: string[];
 
+  @Prop({ default: false })
+  isActive?: boolean;
+
+  @Prop({ type: [Number], min: 0, max: 5, default: [0] })
+  rating?: number[];
+
   @Prop({ default: 0, min: 0 })
-  numberOfbooked: number;
+  numberOfbooked?: number;
 
   @Prop({ default: new Date() })
-  createdAt: Date;
+  createdAt?: Date;
 
   @Prop({ default: null })
-  createdBy: string;
+  createdBy?: string;
 }
 
 export type TourDocument = Tour & Document;

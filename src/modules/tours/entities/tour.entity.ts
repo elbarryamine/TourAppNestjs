@@ -1,4 +1,10 @@
-import { ObjectType, Field, GraphQLISODateTime, Int } from '@nestjs/graphql';
+import {
+  ObjectType,
+  Field,
+  GraphQLISODateTime,
+  Int,
+  Float,
+} from '@nestjs/graphql';
 
 @ObjectType()
 export class Tour {
@@ -20,17 +26,11 @@ export class Tour {
   @Field(() => [String])
   categories: string[];
 
-  @Field(() => [Int])
-  rating: number[];
-
-  @Field(() => GraphQLISODateTime)
-  duration: Date;
+  @Field(() => Float)
+  duration: number;
 
   @Field(() => [String])
   features: string[];
-
-  @Field()
-  isActive: boolean;
 
   @Field()
   startLocation: string;
@@ -45,11 +45,17 @@ export class Tour {
   images: string[];
 
   @Field()
-  numberOfbooked?: number;
+  isActive: boolean;
 
-  @Field(() => GraphQLISODateTime)
-  createdAt?: Date;
+  @Field(() => [Int])
+  rating: number[];
 
   @Field()
-  createdBy?: string;
+  numberOfbooked: number;
+
+  @Field()
+  createdBy: string;
+
+  @Field(() => GraphQLISODateTime)
+  createdAt: Date;
 }
