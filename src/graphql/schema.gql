@@ -1,0 +1,64 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateTourInput {
+  categories: [String!]!
+  description: String!
+  discount: Float!
+  duration: DateTime!
+  features: [String!]!
+  locations: [String!]!
+  name: String!
+  price: Float!
+  startLocation: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Mutation {
+  createTour(createTourInput: CreateTourInput!): Tour!
+  removeTour(id: Int!): Tour!
+  updateTour(updateTourInput: UpdateTourInput!): Tour!
+}
+
+type Query {
+  GetAllTours(page: Int, pageSize: Int): [Tour!]!
+  GetOneTour(id: String!): Tour
+}
+
+type Tour {
+  categories: [String!]!
+  createdAt: DateTime!
+  createdBy: String!
+  description: String!
+  discount: Float!
+  duration: DateTime!
+  features: [String!]!
+  id: String!
+  image: String!
+  images: [String!]!
+  isActive: Boolean!
+  locations: [String!]!
+  name: String!
+  numberOfbooked: Float!
+  price: Float!
+  rating: [Int!]!
+  startLocation: String!
+}
+
+input UpdateTourInput {
+  categories: [String!]
+  description: String
+  discount: Float
+  duration: DateTime
+  features: [String!]
+  id: String!
+  locations: [String!]
+  name: String
+  price: Float
+  startLocation: String
+}
