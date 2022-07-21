@@ -1,4 +1,3 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateTourInput } from './dto/create-tour.input';
@@ -6,6 +5,7 @@ import { UpdateTourInput } from './dto/update-tour.input';
 import { Tour } from './entities/tour.entity';
 import { TourDocument } from './tour.schema';
 import Joi from 'joi';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 
 @Injectable()
 export class ToursService {
@@ -69,7 +69,6 @@ export class ToursService {
       await newTour.save();
       return newTour;
     } catch (err) {
-      console.log(err);
       throw new HttpException('Something went wrong', HttpStatus.FORBIDDEN);
     }
   }
