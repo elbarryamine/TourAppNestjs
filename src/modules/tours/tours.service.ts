@@ -58,11 +58,7 @@ export class ToursService {
           HttpStatus.FORBIDDEN,
         );
 
-      const newTour = new this.tourModel<Tour>({
-        ...createTourInput,
-        image: JSON.stringify(createTourInput.image),
-        images: createTourInput.images.map((el) => JSON.stringify(el)),
-      });
+      const newTour = new this.tourModel<Tour>(createTourInput);
       console.log(newTour);
 
       await newTour.save();

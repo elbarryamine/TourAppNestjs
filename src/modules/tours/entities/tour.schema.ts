@@ -30,11 +30,11 @@ export class Tour {
   @Prop({ type: [String], required: true })
   locations: string[];
 
-  @Prop({ required: true })
-  image: string;
+  @Prop({ default: null })
+  image?: string;
 
-  @Prop({ type: [String], required: true })
-  images: string[];
+  @Prop({ type: [String], default: null })
+  images?: string[];
 
   @Prop({ default: false })
   isActive?: boolean;

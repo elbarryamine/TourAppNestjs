@@ -6,7 +6,6 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 import { MigrationModule } from './modules/migration/migration.module';
 import { ToursModule } from './modules/tours/tours.module';
-import { UploadScalar } from './modules/shared/graphql/UploadScalar';
 
 const environmentImport = ConfigModule.forRoot();
 
@@ -20,9 +19,6 @@ const graphQLModuleImport = GraphQLModule.forRoot<ApolloDriverConfig>({
   playground: true,
   autoSchemaFile: join(process.cwd(), 'src/graphql/schema.gql'),
   sortSchema: true,
-  resolvers: {
-    Upload: UploadScalar,
-  },
 });
 
 @Module({

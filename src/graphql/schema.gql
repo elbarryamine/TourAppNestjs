@@ -8,8 +8,6 @@ input CreateTourInput {
   discount: Float!
   duration: Float!
   features: [String!]!
-  image: Upload!
-  images: [Upload!]!
   locations: [String!]!
   name: String!
   price: Float!
@@ -41,8 +39,8 @@ type Tour {
   duration: Float!
   features: [String!]!
   id: String!
-  image: Upload!
-  images: [Upload!]!
+  image: String!
+  images: [String!]!
   isActive: Boolean!
   locations: [String!]!
   name: String!
@@ -59,13 +57,8 @@ input UpdateTourInput {
   duration: Float
   features: [String!]
   id: String!
-  image: Upload
-  images: [Upload!]
   locations: [String!]
   name: String
   price: Float
   startLocation: String
 }
-
-"""An File Upload Type"""
-scalar Upload

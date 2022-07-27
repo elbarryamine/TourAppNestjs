@@ -6,9 +6,6 @@ import {
   Float,
 } from '@nestjs/graphql';
 
-import { UploadScalar } from 'src/modules/shared/graphql/UploadScalar';
-import type { FileUpload } from 'src/modules/shared/graphql/UploadScalar';
-
 @ObjectType()
 export class Tour {
   @Field({ name: 'id' })
@@ -41,11 +38,11 @@ export class Tour {
   @Field(() => [String])
   locations: string[];
 
-  @Field(() => UploadScalar)
-  image: FileUpload;
+  @Field(() => String)
+  image: string;
 
-  @Field(() => [UploadScalar])
-  images: FileUpload[];
+  @Field(() => [String])
+  images: string[];
 
   @Field()
   isActive: boolean;
