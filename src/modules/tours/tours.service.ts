@@ -16,17 +16,21 @@ export class ToursService {
       const currentPage = page && page > 0 ? page - 1 : 0;
       const itemsOnPage = pageSize ? pageSize : 10;
 
-      const results: GetToursType['results'] = await this.tourModel
-        .find()
-        .skip(currentPage * itemsOnPage)
-        .limit(itemsOnPage)
-        .lean();
-      console.log(results[0]);
+      const results: [GetToursType['results'], number] = await Promise.all([
+        await this.tourModel
+          .find()
+          .skip(currentPage * itemsOnPage)
+          .limit(itemsOnPage)
+          .lean(),
+        await this.tourModel.find().count(),
+      ]);
+
+      console.log(results);
       return {
         currentPage,
-        itemsCount: results.length,
+        itemsCount: results[1],
         itemsOnPage,
-        results,
+        results: results[0],
       };
     } catch {
       throw new HttpException(
