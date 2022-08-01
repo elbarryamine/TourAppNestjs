@@ -5,22 +5,29 @@ import { UpdateTourInput } from './dto/update-tour.input';
 import { TourDocument, Tour } from './entities/tour.schema';
 import Joi from 'joi';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { GetToursType } from './dto/get-tours';
 
 @Injectable()
 export class ToursService {
   constructor(@InjectModel(Tour.name) private tourModel: Model<TourDocument>) {}
 
-  async findAll(page?: number, pageSize?: number) {
+  async findAll(page?: number, pageSize?: number): Promise<GetToursType> {
     try {
-      if (!page && !pageSize) return await this.tourModel.find();
-
       const currentPage = page && page > 0 ? page - 1 : 0;
-      const itemsPerPage = pageSize ? pageSize : 10;
+      const itemsOnPage = pageSize ? pageSize : 10;
 
-      return await this.tourModel
+      const results: GetToursType['results'] = await this.tourModel
         .find()
-        .skip(currentPage * itemsPerPage)
-        .limit(itemsPerPage);
+        .skip(currentPage * itemsOnPage)
+        .limit(itemsOnPage)
+        .lean();
+      console.log(results[0]);
+      return {
+        currentPage,
+        itemsCount: results.length,
+        itemsOnPage,
+        results,
+      };
     } catch {
       throw new HttpException(
         'could not get any results',

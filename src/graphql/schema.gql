@@ -19,6 +19,13 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type GetToursType {
+  currentPage: Int!
+  itemsCount: Int!
+  itemsOnPage: Int!
+  results: [Tour!]!
+}
+
 type Mutation {
   createTour(createTourInput: CreateTourInput!): Tour!
   removeTour(id: Int!): Tour!
@@ -26,7 +33,7 @@ type Mutation {
 }
 
 type Query {
-  GetAllTours(page: Int, pageSize: Int): [Tour!]!
+  GetAllTours(page: Int, pageSize: Int): GetToursType!
   GetOneTour(id: String!): Tour
 }
 

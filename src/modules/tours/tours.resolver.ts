@@ -3,17 +3,18 @@ import { ToursService } from './tours.service';
 import { Tour } from './entities/tour.entity';
 import { CreateTourInput } from './dto/create-tour.input';
 import { UpdateTourInput } from './dto/update-tour.input';
+import { GetToursType } from './dto/get-tours';
 
 @Resolver(() => Tour)
 export class ToursResolver {
   constructor(private readonly toursService: ToursService) {}
 
-  @Query(() => [Tour], { name: 'GetAllTours' })
-  findAll(
+  @Query(() => GetToursType, { name: 'GetAllTours' })
+  async findAll(
     @Args('page', { type: () => Int, nullable: true }) page?: number,
     @Args('pageSize', { type: () => Int, nullable: true }) pageSize?: number,
   ) {
-    return this.toursService.findAll(page, pageSize);
+    return await this.toursService.findAll(page, pageSize);
   }
 
   @Query(() => Tour, { name: 'GetOneTour', nullable: true })
